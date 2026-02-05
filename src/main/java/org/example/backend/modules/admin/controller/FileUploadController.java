@@ -24,7 +24,7 @@ import java.util.UUID;
 @Tag(name = "文件上传", description = "文件上传接口")
 public class FileUploadController {
     
-    @Value("${file.upload.path:./uploads}")
+    @Value("${file.upload.path:../uploads}")
     private String uploadPath;
     
     @Value("${file.upload.url-prefix:/uploads}")
