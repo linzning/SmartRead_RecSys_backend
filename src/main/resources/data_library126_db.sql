@@ -1093,3 +1093,23 @@ INSERT INTO `users` VALUES (32, 'u32', 'u32@test.com', '$2a$10$cB8W7231UE89AeIi/
 INSERT INTO `users` VALUES (100, 'u33', 'u33@test.com', '$2a$10$3pEmCsXgYFznpfROgfYRvOh.iUzAG36qSEilRH6pB3HyhsiR097su', NULL, NULL, 1, '2026-01-27 19:00:04', '2026-01-27 19:00:04');
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+-- ----------------------------
+-- 搜索历史表
+-- ----------------------------
+DROP TABLE IF EXISTS `search_history`;
+
+CREATE TABLE `search_history` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `user_id` bigint(20) NULL COMMENT '用户ID（NULL表示匿名搜索）',
+  `keyword` varchar(200) NOT NULL COMMENT '搜索关键词',
+  `search_mode` varchar(20) NOT NULL DEFAULT 'keyword' COMMENT '搜索模式',
+  `result_count` int(11) NULL DEFAULT 0 COMMENT '搜索结果数量',
+  `ip_address` varchar(50) NULL COMMENT 'IP地址（防刷）',
+  `user_agent` varchar(500) NULL COMMENT '用户代理',
+  `create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '搜索时间',
+  PRIMARY KEY (`id`),
+  INDEX `idx_keyword_time`(`keyword`, `create_time`) COMMENT '热搜统计核心索引',
+  INDEX `idx_user_time`(`user_id`, `create_time`),
+  INDEX `idx_ip_keyword_time`(`ip_address`, `keyword`, `create_time`) COMMENT '防刷索引'
+) ENGINE = InnoDB COMMENT = '搜索历史表';
