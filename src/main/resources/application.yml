@@ -65,6 +65,15 @@ file:
   upload:
     path: ./uploads  # 文件上传路径（相对路径，相对于项目根目录）
     url-prefix: /uploads  # 访问URL前缀
+    storage-type: qiniu  # 存储类型：local(本地) 或 qiniu(七牛云)，默认qiniu
+
+# 七牛云配置
+qiniu:
+  access-key: 0xZdPyFs3llJ0gssWAkgbOp5-fAPy1Tx7HAonFMQ  # 请填入您的七牛云 AccessKey
+  secret-key: XhAAQvE-ko3MkKz7GcJi1nMoMSjKDM6B_ZFSTWij  # 请填入您的七牛云 SecretKey
+  bucket: smartread-recsys  # 存储空间名称
+  domain: http://ta11ulz05.hd-bkt.clouddn.com/  # CDN域名或七牛云默认域名
+  zone: huadong  # 存储区域：huadong(华东), huabei(华北), huanan(华南), beimei(北美)等
 
 # 日志配置
 logging:

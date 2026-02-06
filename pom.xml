@@ -87,7 +87,14 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
-        
+
+        <!-- 七牛云 SDK -->
+        <dependency>
+            <groupId>com.qiniu</groupId>
+            <artifactId>qiniu-java-sdk</artifactId>
+            <version>7.13.1</version>
+        </dependency>
+
         <!-- JSON处理 -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
